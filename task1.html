@@ -103,15 +103,27 @@
                 }
                 var grade = sum /4;
                 console.log(grade);
-                if (grade > 80 && grade <=100){
+                if (grade > 90 && grade <=100){
+                    var letter = "A+";
+                } else if (grade <= 90 && grade > 85){
                     var letter = "A";
-                } else if (grade <= 80 && grade > 68){
+                } else if (grade <= 85 && grade > 80) {
+                    var letter = "A-";
+                } else if (grade <= 80 && grade > 76) {
+                    var letter = "B+";
+                } else if (grade <= 76 && grade > 72){
                     var letter = "B";
-                } else if (grade <= 68 && grade > 55) {
+                } else if (grade <= 72 && grade > 68){
+                    var letter = "B-";
+                } else if (grade <= 68 && grade > 64){
+                    var letter = "C+";
+                } else if (grade <= 64 && grade > 60){
                     var letter = "C";
-                } else if (grade <= 55 && grade >=50) {
+                } else if (grade <= 60 && grade > 55){
+                    var letter = "C-";
+                }else if (grade <= 55 && grade > 50){
                     var letter = "D";
-                } else{
+                } else {
                     var letter = "F";
                 }
                 document.getElementById("grade").innerHTML = grade;
@@ -125,13 +137,25 @@
             function calculateGpa(grade1,grade2,grade3,grade4,grade5){
                 var grade = (parseFloat(grade1) + parseFloat(grade2) + parseFloat(grade3) + parseFloat(grade4) + parseFloat(grade5)) / 5;
                 console.log(grade);
-                if (grade > 80 && grade <=100){
+                if (grade > 90 && grade <=100){
+                    var letter = "A+";
+                } else if (grade <= 90 && grade > 85){
                     var letter = "A";
-                } else if (grade <= 80 && grade > 68){
+                } else if (grade <= 85 && grade > 80) {
+                    var letter = "A-";
+                } else if (grade <= 80 && grade > 76) {
+                    var letter = "B+";
+                } else if (grade <= 76 && grade > 72){
                     var letter = "B";
-                } else if (grade <= 68 && grade > 55) {
+                } else if (grade <= 72 && grade > 68){
+                    var letter = "B-";
+                } else if (grade <= 68 && grade > 64){
+                    var letter = "C+";
+                } else if (grade <= 64 && grade > 60){
                     var letter = "C";
-                } else if (grade <= 55 && grade >=50) {
+                } else if (grade <= 60 && grade > 55){
+                    var letter = "C-";
+                }else if (grade <= 55 && grade > 50){
                     var letter = "D";
                 } else {
                     var letter = "F";
