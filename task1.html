@@ -40,7 +40,7 @@
                         <input type="number" class="form-control" placeholder="0" name="grade5" id="grade5" min="0" max="100">
                     </div>
 
-                    <button type="button" class="btn btn-success" style="margin-top: 20px;" onclick="calculateAdjusted(myForm.grade1.value,myForm.grade2.value,myForm.grade3.value,myForm.grade4.value,myForm.grade5.value);" data-bs-toggle="modal" data-bs-target="#adjustedgrade">Calculate Adjusted GPA</button> 
+                    <button type="button" class="btn btn-success" style="margin-top: 20px;" onclick="calculateAdjusted(myForm.grade1.value,myForm.grade2.value,myForm.grade3.value,myForm.grade4.value,myForm.grade5.value);" data-bs-toggle="modal" data-bs-target="#averagegrade">Calculate Adjusted GPA</button> 
                     <button type="button" class="btn btn-secondary" style="margin-top: 20px;" onclick="reset();">Reset</button> 
                     <button type="button" class="btn btn-primary" style="margin-top: 20px;" onclick="calculateGpa(myForm.grade1.value,myForm.grade2.value,myForm.grade3.value,myForm.grade4.value,myForm.grade5.value);" data-bs-toggle="modal" data-bs-target="#averagegrade">Calculate GPA</button>
                 </form>
@@ -69,51 +69,53 @@
             </div>
         </div>
         <!-- Adjusted Grade Modal -->
-        <div id="adjustedgrade" class="modal" tabindex="-1" role="dialog">
+        <!-- <div id="adjustedgrade" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                 <h5 class="modal-title">Your Final Grade: </h5>
-                <button type="button" class="close" data-dismiss="modal" data-bs-toggle="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-bs-toggle="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
-                    <p>Your final (adjusted) grade percentage is: <span id="adjustedgrade"></span></p>
-                    <p>Based on this overall score, your (adjusted) letter grade will be: <span id="adjustedletter"></span></p>
+                <p>Your final grade percentage is: <span id="grade"></span></p>
+                <p>Based on this overall score, your letter grade will be: <span id="letter"></span></p>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" data-bs-toggle="modal">Close</button>
                 </div>
             </div>
             </div>
-        </div>
-
+        </div> -->
+        
         <script>
-            var grades = [parseFloat(grade1), parseFloat(grade2), parseFloat(grade3), parseFloat(grade4), parseFloat(grade5)];
-
             function calculateAdjusted(grade1,grade2,grade3,grade4,grade5){
-                var lowest = 100;
+                var grades = [parseFloat(grade1), parseFloat(grade2), parseFloat(grade3), parseFloat(grade4), parseFloat(grade5)];
+                console.log(grades);
+                grades.sort();
+                console.log(grades);
+                grades.pop();
+                console.log(grades);
+                var sum = 0;
                 for (var i = 0; i < grades.length; i++){
-                    if (grades[i] < lowest){
-                        lowest = grades[i];
-                    }
+                    sum = sum + grades[i];
                 }
-                var adjustedgrade = (parseFloat(grade1) + parseFloat(grade2) + parseFloat(grade3) + parseFloat(grade4) + parseFloat(grade5) - parseFloat(lowest)) / 4;
+                var grade = sum /4;
+                console.log(grade);
                 if (grade > 80 && grade <=100){
-                    var adjustedletter = "A";
+                    var letter = "A";
                 } else if (grade <= 80 && grade > 68){
-                    var adjustedletter = "B";
+                    var letter = "B";
                 } else if (grade <= 68 && grade > 55) {
-                    var adjustedletter = "C";
+                    var letter = "C";
                 } else if (grade <= 55 && grade >=50) {
-                    var adjustedletter = "D";
+                    var letter = "D";
                 } else{
-                    var adjustedletter = "F";
+                    var letter = "F";
                 }
-                console.log(adjustedgrade);
-                document.getElementById("adjustedgrade").innerHTML = adjustedgrade;
-                document.getElementById("adjustedletter").innerHTML = adjustedletter;
+                document.getElementById("grade").innerHTML = grade;
+                document.getElementById("letter").innerHTML = letter;
             }
             
             function reset() {
